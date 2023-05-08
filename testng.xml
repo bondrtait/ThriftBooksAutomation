@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Full Suite">
+    <test name="Practice Test">
+        <classes>
+            <class name="OneBookSearchAndCartTest">
+                <parameter name="bookTitle" value="The Lord of the Rings Trilogy"/>
+                <parameter name="searchQuery" value="The Lord of the Rings"/>
+            </class>
+            <class name="HomePageTest"/>
+            <class name="SearchingTest"/>
+            <class name="MultipleBooksSearchAndAddCartTest"/>
+        </classes>
+    </test>
+</suite>

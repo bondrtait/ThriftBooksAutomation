@@ -1,0 +1,14 @@
+[
+  {
+    "query" : "witcher",
+    "book-title" : "The Lady of the Lake"
+  },
+  {
+    "query" : "lord of the rings",
+    "book-title" : "The Fellowship of the Ring"
+  },
+  {
+    "query" : "fahrenheit",
+    "book-title" : "Fahrenheit 451"
+  }
+]
