@@ -12,7 +12,6 @@ public class HomePage extends BasePage {
     private final By CONTENT_BLOCK_SECONDARY = By.xpath("//a[@class='HomepageContentBlocks-verticalHalf Secondary']");
     private final By CONTENT_BLOCK_TERTIARY = By.xpath("//a[@class='HomepageContentBlocks-horizontalHalf Tertiary']");
     private final String REC_SECTION = "//div[contains(@class, 'BookSliderNav') and .//h2[text()='%s']]";
-    private final By COOKIE_CONSENT_CLOSE = By.xpath("//button[@class=' osano-cm-dialog__close osano-cm-close ']");
 
     private final HeaderComponent header;
 

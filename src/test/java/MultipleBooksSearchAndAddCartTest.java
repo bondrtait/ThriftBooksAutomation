@@ -47,5 +47,6 @@ public class MultipleBooksSearchAndAddCartTest extends BaseTest{
         }
 
         shoppingCartPage = browsePage.clickViewCartEyebrow();
+        Assert.fail();
     }
 }

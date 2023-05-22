@@ -39,3 +39,4 @@ build/
 
 ###Files for local testing###
 testngDemo.xml
+/reports/index.html

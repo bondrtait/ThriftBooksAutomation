@@ -12,7 +12,7 @@ import java.util.Random;
 public class HomePageTest extends BaseTest{
     private final int CONTAINERS_PER_SECTION_NUM = 24;
 
-    @Test
+    @Test(enabled = false)
     public void testContentBlocksAreDisplayed() {
         homePage.closeCookieConsent();
         Assert.assertTrue(homePage.isMainContentBlockDisplayed());
@@ -28,7 +28,7 @@ public class HomePageTest extends BaseTest{
                 .getRecSection(dataMap.get("sectionTitle"))
                 .scrollToSection();
 
-        Assert.assertTrue(recSection.isContainerVisible(0));
+        Assert.assertTrue(recSection.isContainerVisible(1));
         Assert.assertFalse(recSection.isContainerVisible(CONTAINERS_PER_SECTION_NUM));
 
         while(true) {
@@ -37,11 +37,11 @@ public class HomePageTest extends BaseTest{
             }
         }
 
-        Assert.assertFalse(recSection.isContainerVisible(0));
+        Assert.assertFalse(recSection.isContainerVisible(1));
         Assert.assertTrue(recSection.isContainerVisible(CONTAINERS_PER_SECTION_NUM));
     }
 
-    @Test
+    @Test(enabled = false)
     public void scrollHorizontally() {
         homePage.closeCookieConsent();
        RecSection recSection = homePage

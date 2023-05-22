@@ -98,8 +98,8 @@ public class RecSection extends BasePage {
         Function<WebDriver, Boolean> sliderScrollFinished = (driver) -> {
             long scrollLeftAfter = getScrollLeft(dragscroll);
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            int clientWidth = (int) js.executeScript("return arguments[0].clientWidth;", dragscroll);
-            int scrollWidth = (int) js.executeScript("return arguments[0].scrollWidth;", dragscroll);
+            long clientWidth = (long) js.executeScript("return arguments[0].clientWidth;", dragscroll);
+            long scrollWidth = (long) js.executeScript("return arguments[0].scrollWidth;", dragscroll);
 
             return scrollLeftAfter - scrollLeftBefore >= 960 || clientWidth + scrollLeftAfter == scrollWidth;
         };
@@ -115,7 +115,7 @@ public class RecSection extends BasePage {
     public boolean isContainerVisible(int containerNum) {
         List<WebElement> containersList = recSection.findElements(BOOK_SLIDE_CONTAINERS);
         long scrollLeft = getScrollLeft(recSection.findElement(REC_SECTION_DRAGSCROLL));
-        return hOverflowElementIsInViewport(containersList.get(containerNum), scrollLeft);
+        return hOverflowElementIsInViewport(containersList.get(containerNum - 1), scrollLeft);
     }
 
     //determines if a recSection product container currently entirely in the viewport

@@ -18,7 +18,7 @@ public class BaseTest {
 
     @AfterMethod
     public void close() {
-        System.out.println("calling close()");
-//        DriverSingleton.quit();
+        System.out.println("calling quit()");
+        DriverSingleton.quit();
     }
 }

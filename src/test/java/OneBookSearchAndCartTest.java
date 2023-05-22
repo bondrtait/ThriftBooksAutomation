@@ -13,6 +13,7 @@ public class OneBookSearchAndCartTest extends BaseTest{
     @Test
     @Parameters({"searchQuery", "bookTitle"})
     public void testSearchingBook(String searchQuery, String bookTitle) {
+        homePage.closeCookieConsent();
         browsePage = homePage.getHeader()
                 .clickSearchBar()
                 .inputSearchQuery(searchQuery)
