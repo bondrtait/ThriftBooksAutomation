@@ -1,9 +1,11 @@
+import common.DriverSingleton;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.browsepage.BrowsePage;
 import pages.browsepage.ProductTile;
 import pages.ShoppingCartPage;
+import pages.homepage.HomePage;
 
 public class OneBookSearchAndCartTest extends BaseTest{
     BrowsePage browsePage;
@@ -13,6 +15,7 @@ public class OneBookSearchAndCartTest extends BaseTest{
     @Test
     @Parameters({"searchQuery", "bookTitle"})
     public void testSearchingBook(String searchQuery, String bookTitle) {
+        HomePage homePage = new HomePage(DriverSingleton.getDriver());
         homePage.closeCookieConsent();
         browsePage = homePage.getHeader()
                 .clickSearchBar()

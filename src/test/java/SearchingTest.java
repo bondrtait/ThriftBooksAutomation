@@ -1,9 +1,11 @@
+import common.DriverSingleton;
 import data.DataReader;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.browsepage.BrowsePage;
 import pages.browsepage.ProductTile;
+import pages.homepage.HomePage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +17,7 @@ public class SearchingTest extends BaseTest{
 
     @Test(dataProvider = "data")
     public void testSearchInputAndSuggestions(Map<String, String> dataMap) {
+        HomePage homePage = new HomePage(DriverSingleton.getDriver());
         Assert.assertTrue(homePage.getHeader().getSearchBarValue().isEmpty());
         homePage.getHeader().clickSearchBar().inputSearchQuery(dataMap.get("query"));
         Assert.assertEquals(homePage.getHeader().getSearchBarValue(), dataMap.get("query"));
@@ -33,6 +36,7 @@ public class SearchingTest extends BaseTest{
 
     @Test(dataProvider = "data")
     public void testSearchResultsByQuery(Map<String, String> dataMap) {
+        HomePage homePage = new HomePage(DriverSingleton.getDriver());
         BrowsePage browsePage = homePage.getHeader()
                 .clickSearchBar()
                 .inputSearchQuery(dataMap.get("query"))

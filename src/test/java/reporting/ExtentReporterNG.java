@@ -5,7 +5,7 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ExtentReporterNG {
     public static ExtentReports getReportObject() {
-        String path = System.getProperty("user.dir") + "//reports//index.html";
+        String path = System.getProperty("user.dir") + "\\reports\\index.html";
         ExtentSparkReporter reporter = new ExtentSparkReporter(path);
         reporter.config().setReportName("Thrift Store Results");
         reporter.config().setDocumentTitle("Test Results");

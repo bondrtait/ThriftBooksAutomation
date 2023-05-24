@@ -1,8 +1,10 @@
+import common.DriverSingleton;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.browsepage.BrowsePage;
 import pages.browsepage.ProductTile;
 import pages.ShoppingCartPage;
+import pages.homepage.HomePage;
 
 public class MultipleBooksSearchAndAddCartTest extends BaseTest{
     BrowsePage browsePage;
@@ -16,6 +18,7 @@ public class MultipleBooksSearchAndAddCartTest extends BaseTest{
 
     @Test
     public void testAssemblingCart() {
+        HomePage homePage = new HomePage(DriverSingleton.getDriver());
         homePage.closeCookieConsent();
         for (String[] testDatum : testData) {
             browsePage = homePage.getHeader()
@@ -47,6 +50,6 @@ public class MultipleBooksSearchAndAddCartTest extends BaseTest{
         }
 
         shoppingCartPage = browsePage.clickViewCartEyebrow();
-        Assert.fail();
+        Assert.fail("Failing on purpose");
     }
 }

@@ -2,7 +2,6 @@ package reporting;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import common.DriverSingleton;
 import org.apache.commons.io.FileUtils;
@@ -19,26 +18,30 @@ import java.util.Arrays;
 
 public class Listeners implements ITestListener {
 
-    WebDriver driver = DriverSingleton.getDriver();
     ExtentReports extent = ExtentReporterNG.getReportObject();
-    ExtentTest test;
+    ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
     @Override
     public void onTestStart(ITestResult result) {
-        test = extent.createTest(result.getMethod().getMethodName());
-        test.info(Arrays.toString(result.getParameters()));
+        System.out.println("Thread " + Thread.currentThread().getId() + ": entering onTestStart() for " + result.getMethod().getMethodName());
+        test.set(extent.createTest(result.getMethod().getMethodName()));
+        test.get().info(Arrays.toString(result.getParameters()));
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.log(Status.PASS, "Test Passed");
+        test.get().log(Status.PASS, "Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        test.fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot(result.getMethod().getMethodName(), driver)).build());
+//        test.get().fail(result.getThrowable(),
+//                MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot(result.getMethod().getMethodName(),
+//                        DriverSingleton.getDriver())).build());
+        String methodName = result.getMethod().getMethodName();
 
-//        test.addScreenCaptureFromPath(getScreenshot(result.getMethod().getMethodName(), driver),
-//                result.getMethod().getMethodName());
+        test.get().fail(result.getThrowable());
+        test.get().addScreenCaptureFromPath(getScreenshot(methodName, DriverSingleton.getDriver()), methodName);
     }
 
     @Override
@@ -49,7 +52,7 @@ public class Listeners implements ITestListener {
     private String getScreenshot(String testCaseName, WebDriver driver) {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
-        String path = System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
+        String path = System.getProperty("user.dir") + "\\reports\\" + testCaseName + ".png";
         File file = new File(path);
 
         try {
@@ -58,6 +61,6 @@ public class Listeners implements ITestListener {
             throw new RuntimeException(e);
         }
 
-        return path;
+        return testCaseName + ".png";
     }
 }

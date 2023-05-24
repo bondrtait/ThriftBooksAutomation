@@ -1,7 +1,9 @@
+import common.DriverSingleton;
 import data.DataReader;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.homepage.HomePage;
 import pages.homepage.RecSection;
 
 import java.util.HashMap;
@@ -14,6 +16,7 @@ public class HomePageTest extends BaseTest{
 
     @Test(enabled = false)
     public void testContentBlocksAreDisplayed() {
+        HomePage homePage = new HomePage(DriverSingleton.getDriver());
         homePage.closeCookieConsent();
         Assert.assertTrue(homePage.isMainContentBlockDisplayed());
         Assert.assertTrue(homePage.isSecondaryContentBlockDisplayed());
@@ -23,6 +26,7 @@ public class HomePageTest extends BaseTest{
 
     @Test(dataProvider = "data")
     public void testSectionScrollWithSliders(Map<String, String> dataMap) {
+        HomePage homePage = new HomePage(DriverSingleton.getDriver());
         homePage.closeCookieConsent();
         RecSection recSection = homePage
                 .getRecSection(dataMap.get("sectionTitle"))
@@ -43,6 +47,7 @@ public class HomePageTest extends BaseTest{
 
     @Test(enabled = false)
     public void scrollHorizontally() {
+        HomePage homePage = new HomePage(DriverSingleton.getDriver());
         homePage.closeCookieConsent();
        RecSection recSection = homePage
                .getRecSection("Bestsellers")

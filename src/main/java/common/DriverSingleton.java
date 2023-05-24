@@ -6,25 +6,27 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class DriverSingleton {
-    private static WebDriver driver = null;
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private DriverSingleton() {
     }
 
     public static WebDriver getDriver() {
-        if (driver == null) {
-            driver = new ChromeDriver();
+        if (driver.get() == null) {
+            driver.set(new ChromeDriver());
 
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Config.IMPLICIT_WAIT));
+            driver.get().manage().window().maximize();
+            driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(Config.IMPLICIT_WAIT));
         }
 
-        return driver;
+//        System.out.println("getDriver() was called by Thread " + Thread.currentThread().getId() + " and Driver instance returned is " + driver.get());
+        return driver.get();
     }
 
     public static void quit() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+//        System.out.println("quit() was called by Thread " + Thread.currentThread().getId() + " and Driver instance is " + driver.get());
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
         }
     }
 }
