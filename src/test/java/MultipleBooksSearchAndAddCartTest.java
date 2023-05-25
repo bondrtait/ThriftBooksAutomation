@@ -1,10 +1,9 @@
-import TestComponents.Retry;
 import common.DriverSingleton;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.ShoppingCartPage;
 import pages.browsepage.BrowsePage;
 import pages.browsepage.ProductTile;
-import pages.ShoppingCartPage;
 import pages.homepage.HomePage;
 
 public class MultipleBooksSearchAndAddCartTest extends BaseTest{
@@ -17,7 +16,7 @@ public class MultipleBooksSearchAndAddCartTest extends BaseTest{
             {"451", "Fahrenheit 451"}
     };
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testAssemblingCart() {
         HomePage homePage = new HomePage(DriverSingleton.getDriver());
         homePage.closeCookieConsent();
