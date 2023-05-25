@@ -27,12 +27,7 @@ public class RecSection extends BasePage {
         super(driver);
         this.recSection = recSection;
 
-        //log
-        System.out.println(recSection.findElements(BOOK_SLIDE_CONTAINERS).get(0).getText());
-        System.out.println();
         List<WebElement> containersList = recSection.findElements(BOOK_SLIDE_CONTAINERS);
-        System.out.println(containersList.get(containersList.size() - 1).getText());
-
     }
 
     public RecSection scrollToSection() {

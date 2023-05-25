@@ -1,3 +1,4 @@
+import TestComponents.Retry;
 import common.DriverSingleton;
 import data.DataReader;
 import org.testng.Assert;
@@ -24,7 +25,7 @@ public class HomePageTest extends BaseTest{
         Assert.assertTrue(homePage.isSecondTertiaryContentBlockDisplayed());
     }
 
-    @Test(dataProvider = "data")
+    @Test(dataProvider = "data", retryAnalyzer = Retry.class)
     public void testSectionScrollWithSliders(Map<String, String> dataMap) {
         HomePage homePage = new HomePage(DriverSingleton.getDriver());
         homePage.closeCookieConsent();

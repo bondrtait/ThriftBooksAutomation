@@ -3,7 +3,7 @@
 
 <suite name="Full Suite" parallel="methods" thread-count="2">
     <listeners>
-        <listener class-name="reporting.Listeners"/>
+        <listener class-name="TestComponents.Listeners"/>
     </listeners>
     <test name="Practice Test">
         <classes>

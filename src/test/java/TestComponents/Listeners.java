@@ -1,4 +1,4 @@
-package reporting;
+package TestComponents;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -23,7 +23,6 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("Thread " + Thread.currentThread().getId() + ": entering onTestStart() for " + result.getMethod().getMethodName());
         test.set(extent.createTest(result.getMethod().getMethodName()));
         test.get().info(Arrays.toString(result.getParameters()));
     }
@@ -35,9 +34,6 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-//        test.get().fail(result.getThrowable(),
-//                MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot(result.getMethod().getMethodName(),
-//                        DriverSingleton.getDriver())).build());
         String methodName = result.getMethod().getMethodName();
 
         test.get().fail(result.getThrowable());
